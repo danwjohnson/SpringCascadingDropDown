@@ -89,6 +89,40 @@ function onSelectChange() {
 
 </head>
 <body>
+<c:if test="${not empty message1}">
+	<div class="${message.type.cssClass}">${message.text}</div>
+</c:if>
+
+<c:url value="/signup" var="signupUrl" />
+<form:form id="signup" action="${signupUrl}" method="post"
+	modelAttribute="signupForm">
+	<div class="formInfo">
+	<h2>Sign Up</h2>
+	<s:bind path="*">
+		<c:choose>
+			<c:when test="${status.error}">
+				<div class="error">Unable to sign up. Please fix the errors</div>
+			</c:when>
+		</c:choose>
+	</s:bind>
+	<p>Select a State</p>
+	</div>
+	
+	<fieldset>
+	<div class="multiple">
+		<form:select id="usSates" path="usState">
+		</form:select>
+		
+		<form:select id="city" path="city">
+			<form:option value="">City</form:option>
+		</form:select>
+	</div>
+	</fieldset>
+</form:form>
+
+	<div id="ouput">
+	
+	</div>
 
 </body>
 </html>
